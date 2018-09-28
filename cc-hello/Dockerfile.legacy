@@ -1,0 +1,8 @@
+FROM frolvlad/alpine-gcc
+
+COPY src/* /
+
+RUN apk add --no-cache make
+RUN make -f Makefile hello
+
+CMD ["/hello"]

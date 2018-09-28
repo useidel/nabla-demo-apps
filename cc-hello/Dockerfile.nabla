@@ -1,0 +1,11 @@
+FROM nabla-cc-build
+
+COPY src/* /
+
+RUN apk add --no-cache make
+RUN make -f Makefile hello.seccomp
+
+FROM scratch
+COPY hello.seccomp /hello.nabla
+ENTRYPOINT ["/hello.nabla"]
+
